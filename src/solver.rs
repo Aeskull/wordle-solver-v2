@@ -102,7 +102,7 @@ pub fn solve(known: &String, unknown: &String, nons: &String) -> Option<Vec<Stri
     let mut filtered_list = Vec::<String>::new();
     'outer: for line in &list {
         for c in nons.chars() {
-            if !line.contains(c) {
+            if line.contains(c) {
                 continue 'outer;
             }
         }
@@ -114,7 +114,7 @@ pub fn solve(known: &String, unknown: &String, nons: &String) -> Option<Vec<Stri
     filtered_list.clear();
     'outer: for line in &list {
         for c in unknown.chars() {
-            if line.contains(c) {
+            if !line.contains(c) {
                 continue 'outer;
             }
         }

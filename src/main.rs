@@ -5,7 +5,7 @@ use inquire::Select;
 
 fn menu(items: &[String]) -> State {
     use State::*;
-    match Select::new("MENU", items.to_vec())
+    match Select::new("MAIN_MENU", items.to_vec())
     .prompt()
     .unwrap().as_str() {
         "KNOWNS" => KNOWN,
@@ -40,6 +40,7 @@ fn main() {
     let mut unknown = String::new();
     let mut non = String::new();
     let mut state = menu(&m_items);
+
     loop {
         match state {
             State::KNOWN => {
