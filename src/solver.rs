@@ -24,7 +24,6 @@ pub fn update_known(inp: &mut String) -> Result<(), ()> {
     .prompt()
     .unwrap().as_str() {
         "YES" => *inp = new.clone(),
-        "NO" => return Err(()),
         _ => return Err(()),
     };
 
@@ -75,7 +74,6 @@ pub fn update_unknown_nons(inp: &mut String, non: bool) -> Result<(), ()> {
     .prompt()
     .unwrap().as_str() {
         "YES" => *inp = con.clone(),
-        "NO" => return Err(()),
         _ => return Err(()),
     };
 
