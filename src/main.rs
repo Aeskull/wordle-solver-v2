@@ -29,6 +29,8 @@ enum State {
 }
 
 fn main() {
+    use State::*;
+
     let m_items = ["KNOWNS".to_owned(),
     "UNKNOWNS".to_owned(),
     "NONS".to_owned(),
@@ -43,7 +45,7 @@ fn main() {
 
     loop {
         match state {
-            State::KNOWN => {
+            KNOWN => {
                 match solver::update_known(&mut known) {
                     Ok(_) => {
                         println!("The new knowns: \"{}\"\n", known);
@@ -53,7 +55,7 @@ fn main() {
                     },
                 };
             },
-            State::UNKNOWN => {
+            UNKNOWN => {
                 match solver::update_unknown_nons(&mut unknown, false) {
                     Ok(_) => {
                         println!("The new unknowns: \"{}\"\n", unknown);
@@ -63,7 +65,7 @@ fn main() {
                     }
                 };
             },
-            State::NON => {
+            NON => {
                 match solver::update_unknown_nons(&mut non, true) {
                     Ok(_) => {
                         println!("The new nons are: \"{}\"\n", non);
@@ -73,13 +75,13 @@ fn main() {
                     }
                 };
             },
-            State::CLEAR => {
+            CLEAR => {
                 known = "*****".to_owned();
                 unknown = String::new();
                 non = String::new();
                 println!("Stored Values Cleared!\n");
-            }
-            State::SOLVING => {
+            },
+            SOLVING => {
                 let result = solver::solve(&known, &unknown, &non);
                 if let Some(e) = result {
                     if e.len() > 0 {
